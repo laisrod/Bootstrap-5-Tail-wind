@@ -51,7 +51,8 @@ function App() {
         title={currentStep.title} 
         description={currentStep.description} 
         image={currentStep.image}
-        onNext={nextStep} 
+        onNext={nextStep}
+        onPrev={prevStep}
       />
     </div>
   )
