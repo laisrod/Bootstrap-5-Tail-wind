@@ -37,6 +37,151 @@
   padding: 2em;
 }
 
+.card-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  max-width: 800px;
+  margin: 0 auto;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+}
+
+.card-image {
+  width: 100%;
+  max-width: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card-image img {
+  width: 100%;
+  height: auto;
+  max-height: 200px;
+  object-fit: contain;
+}
+
+.card-content {
+  text-align: center;
+  width: 100%;
+}
+
+.card-content h2 {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+  color: #333;
+  font-weight: 600;
+}
+
+.card-content p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #666;
+  margin-bottom: 2rem;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.card-content button {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  font-size: 1rem;
+  font-weight: 500;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+}
+
+.card-content button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+}
+
+
+@media (min-width: 768px) {
+  .card-container {
+    flex-direction: row;
+    align-items: center;
+    gap: 3rem;
+    padding: 3rem;
+  }
+  
+  .card-image {
+    flex: 1;
+    max-width: 400px;
+  }
+  
+  .card-content {
+    flex: 1;
+    text-align: left;
+  }
+  
+  .card-content h2 {
+    font-size: 2.2rem;
+  }
+  
+  .card-content p {
+    font-size: 1.2rem;
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+
+@media (min-width: 1024px) {
+  .card-container {
+    gap: 4rem;
+    padding: 4rem;
+  }
+  
+  .card-image {
+    max-width: 450px;
+  }
+  
+  .card-image img {
+    max-height: 250px;
+  }
+  
+  .card-content h2 {
+    font-size: 2.5rem;
+  }
+  
+  .card-content p {
+    font-size: 1.3rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .card {
+    padding: 1rem;
+  }
+  
+  .card-container {
+    padding: 1.5rem;
+    gap: 1.5rem;
+  }
+  
+  .card-content h2 {
+    font-size: 1.5rem;
+  }
+  
+  .card-content p {
+    font-size: 1rem;
+  }
+  
+  .card-content button {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+  }
+}
+
 .read-the-docs {
   color: #888;
 }
