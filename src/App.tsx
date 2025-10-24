@@ -53,6 +53,8 @@ function App() {
         image={currentStep.image}
         onNext={nextStep}
         onPrev={prevStep}
+        currentStepIndex={currentStepIndex}
+        totalSteps={tutorialData.length}
       />
     </div>
   )

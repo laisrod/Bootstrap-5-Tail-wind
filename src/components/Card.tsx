@@ -4,9 +4,14 @@ interface CardProps {
   image: string;
   onNext: () => void;
   onPrev: () => void;
+  currentStepIndex: number;
+  totalSteps: number;
 }
 
-export default function Card({ title, description, image, onNext, onPrev }: CardProps) {
+export default function Card({ title, description, image, onNext, onPrev, currentStepIndex, totalSteps }: CardProps) {
+  const isFirstStep = currentStepIndex === 0;
+  const isLastStep = currentStepIndex === totalSteps - 1;
+
   return (
     <div className="card-container">
       <div className="card-image">
@@ -16,8 +21,8 @@ export default function Card({ title, description, image, onNext, onPrev }: Card
         <h2>{title}</h2>
         <p>{description}</p>
         <div className="button-container">
-          <button onClick={onPrev}>Anterior</button>
-          <button onClick={onNext}>Próximo</button>
+          {!isFirstStep && <button onClick={onPrev}>Anterior</button>}
+          {!isLastStep && <button onClick={onNext}>Próximo</button>}
         </div>
       </div>
     </div>
