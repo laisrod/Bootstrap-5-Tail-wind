@@ -3,9 +3,10 @@ interface CardProps {
   description: string;
   image: string;
   onNext: () => void;
+  onPrev: () => void;
 }
 
-export default function Card({ title, description, image, onNext }: CardProps) {
+export default function Card({ title, description, image, onNext, onPrev }: CardProps) {
   return (
     <div className="card-container">
       <div className="card-image">
@@ -14,7 +15,10 @@ export default function Card({ title, description, image, onNext }: CardProps) {
       <div className="card-content">
         <h2>{title}</h2>
         <p>{description}</p>
-        <button onClick={onNext}>Próximo</button>
+        <div className="button-container">
+          <button onClick={onPrev}>Anterior</button>
+          <button onClick={onNext}>Próximo</button>
+        </div>
       </div>
     </div>
   )
