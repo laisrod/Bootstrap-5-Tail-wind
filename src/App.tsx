@@ -36,6 +36,13 @@ function App() {
     })
   }
 
+  const prevStep = (): void => {
+    setCurrentStepIndex((prevIndex) => {
+      const prevIndexValue = prevIndex - 1
+      return prevIndexValue >= 0 ? prevIndexValue : prevIndex
+    })
+  }
+
   const currentStep = tutorialData[currentStepIndex]
 
   return (
