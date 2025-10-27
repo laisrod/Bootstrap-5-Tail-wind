@@ -43,6 +43,10 @@ function App() {
     })
   }
 
+  const handleStepClick = (index: number): void => {
+    setCurrentStepIndex(index)
+  }
+
   const currentStep = tutorialData[currentStepIndex]
 
   return (
@@ -55,6 +59,7 @@ function App() {
         onPrev={prevStep}
         currentStepIndex={currentStepIndex}
         totalSteps={tutorialData.length}
+        onStepClick={handleStepClick}
       />
     </div>
   )
