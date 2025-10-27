@@ -1,3 +1,5 @@
+import Indicator from './Indicator'
+
 interface CardProps {
   title: string;
   description: string;
@@ -6,25 +8,20 @@ interface CardProps {
   onPrev: () => void;
   currentStepIndex: number;
   totalSteps: number;
+  onStepClick: (index: number) => void;
 }
 
-export default function Card({ title, description, image, onNext, onPrev, currentStepIndex, totalSteps }: CardProps) {
+export default function Card({ title, description, image, onNext, onPrev, currentStepIndex, totalSteps, onStepClick }: CardProps) {
   const isFirstStep = currentStepIndex === 0;
   const isLastStep = currentStepIndex === totalSteps - 1;
 
   return (
     <div className="card-container">
-      <div className="progress-indicator">
-        {Array.from({ length: totalSteps }, (_, index) => (
-          <div key={index} className={`progress-dot ${index === currentStepIndex ? 'active' : ''}`}>
-            {index === currentStepIndex ? (
-              <div className="progress-line"></div>
-            ) : (
-              <div className="progress-dot-inactive"></div>
-            )}
-          </div>
-        ))}
-      </div>
+      <Indicator 
+        currentStepIndex={currentStepIndex}
+        totalSteps={totalSteps}
+        onStepClick={onStepClick}
+      />
       
       <div className="card-image">
         <img src={image} alt={title} />
