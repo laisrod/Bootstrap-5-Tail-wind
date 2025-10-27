@@ -14,6 +14,18 @@ export default function Card({ title, description, image, onNext, onPrev, curren
 
   return (
     <div className="card-container">
+      <div className="progress-indicator">
+        {Array.from({ length: totalSteps }, (_, index) => (
+          <div key={index} className={`progress-dot ${index === currentStepIndex ? 'active' : ''}`}>
+            {index === currentStepIndex ? (
+              <div className="progress-line"></div>
+            ) : (
+              <div className="progress-dot-inactive"></div>
+            )}
+          </div>
+        ))}
+      </div>
+      
       <div className="card-image">
         <img src={image} alt={title} />
       </div>
