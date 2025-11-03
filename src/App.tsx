@@ -7,8 +7,9 @@ interface TutorialStep {
   description: string;
   image: string;
 }
-
 function App() {
+  const [currentStepIndex, setCurrentStepIndex] = useState<number>(0)
+
   const tutorialData: TutorialStep[] = [
     {
       title: 'Dedica moltes hores',
@@ -27,7 +28,7 @@ function App() {
     }
   ];
 
-  const [currentStepIndex, setCurrentStepIndex] = useState<number>(0)
+  const currentStep = tutorialData[currentStepIndex]
 
   const nextStep = (): void => {
     setCurrentStepIndex((prevIndex) => {
@@ -35,19 +36,15 @@ function App() {
       return nextIndex < tutorialData.length ? nextIndex : prevIndex
     })
   }
-
   const prevStep = (): void => {
     setCurrentStepIndex((prevIndex) => {
       const prevIndexValue = prevIndex - 1
       return prevIndexValue >= 0 ? prevIndexValue : prevIndex
     })
   }
-
   const handleStepClick = (index: number): void => {
     setCurrentStepIndex(index)
   }
-
-  const currentStep = tutorialData[currentStepIndex]
 
   return (
     <div className="card">

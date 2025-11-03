@@ -1,5 +1,4 @@
 import Indicator from './Indicator'
-
 interface CardProps {
   title: string;
   description: string;
@@ -12,16 +11,16 @@ interface CardProps {
 }
 
 export default function Card({ title, description, image, onNext, onPrev, currentStepIndex, totalSteps, onStepClick }: CardProps) {
-  const isFirstStep = currentStepIndex === 0;
+  const isFirstStep = currentStepIndex === 0; 
   const isLastStep = currentStepIndex === totalSteps - 1;
-
   return (
     <div className="card-container">
-      <Indicator 
+      <Indicator
         currentStepIndex={currentStepIndex}
         totalSteps={totalSteps}
         onStepClick={onStepClick}
       />
+      <div className="selected-phrase" aria-live="polite">{title}</div>
       
       <div className="card-image">
         <img src={image} alt={title} />
