@@ -1,15 +1,10 @@
 import { useState } from 'react'
 import './App.css'
 import Card from './components/Card'
-
-interface TutorialStep {
-  title: string;
-  description: string;
-  image: string;
-  bgColor: string;
-}
+import type { TutorialStep } from './types'
 function App() {
   const [currentStepIndex, setCurrentStepIndex] = useState<number>(0)
+  const [direction, setDirection] = useState<'forward' | 'backward'>('forward')
 
   const tutorialData: TutorialStep[] = [
     {
@@ -35,18 +30,21 @@ function App() {
   const currentStep = tutorialData[currentStepIndex]
 
   const nextStep = (): void => {
+    setDirection('forward')
     setCurrentStepIndex((prevIndex) => {
       const nextIndex = prevIndex + 1
       return nextIndex < tutorialData.length ? nextIndex : prevIndex
     })
   }
   const prevStep = (): void => {
+    setDirection('backward')
     setCurrentStepIndex((prevIndex) => {
       const prevIndexValue = prevIndex - 1
       return prevIndexValue >= 0 ? prevIndexValue : prevIndex
     })
   }
   const handleStepClick = (index: number): void => {
+    setDirection(index > currentStepIndex ? 'forward' : 'backward')
     setCurrentStepIndex(index)
   }
 
@@ -57,6 +55,7 @@ function App() {
         description={currentStep.description} 
         image={currentStep.image}
         bgColor={currentStep.bgColor}
+        direction={direction}
         onNext={nextStep}
         onPrev={prevStep}
         currentStepIndex={currentStepIndex}

@@ -1,9 +1,14 @@
-import Indicator from './Indicator'
+import StepIndicator from './StepIndicator'
+import StepImage from './StepImage'
+import StepContent from './StepContent'
+import NavigationButtons from './NavigationButtons'
+
 interface CardProps {
   title: string;
   description: string;
   image: string;
   bgColor: string;
+  direction: 'forward' | 'backward';
   onNext: () => void;
   onPrev: () => void;
   currentStepIndex: number;
@@ -11,28 +16,22 @@ interface CardProps {
   onStepClick: (index: number) => void;
 }
 
-export default function Card({ title, description, image, bgColor, onNext, onPrev, currentStepIndex, totalSteps, onStepClick }: CardProps) {
+export default function Card({ title, description, image, bgColor, direction, onNext, onPrev, currentStepIndex, totalSteps, onStepClick }: CardProps) {
   const isFirstStep = currentStepIndex === 0; 
   const isLastStep = currentStepIndex === totalSteps - 1;
   return (
     <div className="card-container">
-      <Indicator
+      <StepIndicator
         currentStepIndex={currentStepIndex}
         totalSteps={totalSteps}
         onStepClick={onStepClick}
       />
       <div className="selected-phrase" aria-live="polite">{title}</div>
       
-      <div className="card-image" style={{ backgroundColor: bgColor }}>
-        <img src={image} alt={title} />
-      </div>
+      <StepImage image={image} title={title} bgColor={bgColor} direction={direction} />
       <div className="card-content">
-        <h2>{title}</h2>
-        <p>{description}</p>
-        <div className="button-container">
-          {!isFirstStep && <button className="circle-btn" onClick={onPrev}>←</button>}
-          {!isLastStep && <button className="circle-btn" onClick={onNext}>→</button>}
-        </div>
+        <StepContent title={title} description={description} />
+        <NavigationButtons onPrev={onPrev} onNext={onNext} isFirst={isFirstStep} isLast={isLastStep} />
       </div>
     </div>
   )

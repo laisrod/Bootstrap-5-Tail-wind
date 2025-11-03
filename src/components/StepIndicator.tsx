@@ -1,10 +1,10 @@
-interface IndicatorProps {
+interface StepIndicatorProps {
   currentStepIndex: number;
   totalSteps: number;
   onStepClick: (index: number) => void;
 }
 
-export default function Indicator({ currentStepIndex, totalSteps, onStepClick }: IndicatorProps) {
+export default function StepIndicator({ currentStepIndex, totalSteps, onStepClick }: StepIndicatorProps) {
   return (
     <div className="progress-indicator">
       {Array.from({ length: totalSteps }, (_, index) => (
@@ -24,3 +24,5 @@ export default function Indicator({ currentStepIndex, totalSteps, onStepClick }:
     </div>
   )
 }
+
+
