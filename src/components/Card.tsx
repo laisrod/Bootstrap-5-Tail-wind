@@ -3,6 +3,7 @@ interface CardProps {
   title: string;
   description: string;
   image: string;
+  bgColor: string;
   onNext: () => void;
   onPrev: () => void;
   currentStepIndex: number;
@@ -10,7 +11,7 @@ interface CardProps {
   onStepClick: (index: number) => void;
 }
 
-export default function Card({ title, description, image, onNext, onPrev, currentStepIndex, totalSteps, onStepClick }: CardProps) {
+export default function Card({ title, description, image, bgColor, onNext, onPrev, currentStepIndex, totalSteps, onStepClick }: CardProps) {
   const isFirstStep = currentStepIndex === 0; 
   const isLastStep = currentStepIndex === totalSteps - 1;
   return (
@@ -22,15 +23,15 @@ export default function Card({ title, description, image, onNext, onPrev, curren
       />
       <div className="selected-phrase" aria-live="polite">{title}</div>
       
-      <div className="card-image">
+      <div className="card-image" style={{ backgroundColor: bgColor }}>
         <img src={image} alt={title} />
       </div>
       <div className="card-content">
         <h2>{title}</h2>
         <p>{description}</p>
         <div className="button-container">
-          {!isFirstStep && <button onClick={onPrev}>Anterior</button>}
-          {!isLastStep && <button onClick={onNext}>Próximo</button>}
+          {!isFirstStep && <button className="circle-btn" onClick={onPrev}>←</button>}
+          {!isLastStep && <button className="circle-btn" onClick={onNext}>→</button>}
         </div>
       </div>
     </div>
